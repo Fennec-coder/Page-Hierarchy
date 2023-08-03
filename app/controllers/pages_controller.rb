@@ -28,7 +28,7 @@ class PagesController < ApplicationController
       path_to_page = (pages[0..-2] << (@page.name)).join('/')
       redirect_to page_path(path_to_page), notice: 'Страница успешно добавлена.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -43,15 +43,13 @@ class PagesController < ApplicationController
   def update
     @page = Page.find_by(id: page_params[:id])
 
-    not_found && return if @page.nil?
-
     if @page.update(page_params)
       pages = params[:name].split('/')
       path_to_page = (pages[0..-3] << (@page.name)).join('/')
 
       redirect_to page_path(path_to_page), notice: 'Страница успешно изменина.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -61,7 +59,7 @@ class PagesController < ApplicationController
     if @page.delete
       redirect_to root_path, notice: 'Успешно удалено'
     else
-      render :show
+      head :internal_server_error
     end
   end
 
