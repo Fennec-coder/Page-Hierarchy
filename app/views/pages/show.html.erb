@@ -1,4 +1,4 @@
-<%= link_to 'create', "#{params[:name]}/add" %>
+<%= link_to 'create', page_path("#{params[:name]}/add") %>
 
 <h1> SHOW: <%= @page.name %> </h1>
 <h2> <%= @page.title %> </h2>

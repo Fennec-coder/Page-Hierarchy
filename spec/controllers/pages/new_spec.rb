@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe PagesController, type: :controller do
-  it "returns http success" do
-    get :new
+  before { get :new }
+
+  it 'returns http success' do
     expect(response).to have_http_status(:success)
   end
 
-  it "assigns a new page to @page" do
-    get :new
+  it 'assigns a new page to @page' do
     expect(assigns(:page)).to be_a_new(Page)
   end
 end
