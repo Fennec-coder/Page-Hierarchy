@@ -1,0 +1,22 @@
+<h1> Edit: <%= @page.name %> </h1>
+
+<%= simple_form_for @page, url: '' do |f| %>
+  <%= f.hidden_field :id %>
+
+  <%= f.input :name %>
+  <% if @page.errors[:name].any? %>
+    <p class="error_message"><%= @page.errors[:name].first %></p>
+  <% end %>
+
+  <%= f.input :title %>
+  <% if @page.errors[:title].any? %>
+    <p class="error_message"><%= @page.errors[:title].first %></p>
+  <% end %>
+
+  <%= f.input :body, as: :text %>
+  <% if @page.errors[:body].any? %>
+    <p class="error_message"><%= @page.errors[:body].first %></p>
+  <% end %>
+
+  <%= f.button :submit, 'Изменить страницу' %>
+<% end %>

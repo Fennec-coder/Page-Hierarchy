@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#index"
 
-  get 'pages', to: 'pages#index'
+  get '/', to: 'pages#index', as: :pages
 
-  resource :pages, path: 'pages/*name', as: :page do
-    get 'add', to: 'pages#new', on: :collection
+  get  'add', to: 'pages#new', as: :add_page
+  post '/',  to: 'pages#create', as: :create_page
+
+  resource :page, path: '*name', except: :new, as: :page do
+    get 'add', to: 'pages#new', as: :new_page
   end
 end

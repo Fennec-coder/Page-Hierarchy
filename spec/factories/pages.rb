@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :page do
-    name { 'Some Page' }
+    name { 'some_page' }
   end
 end

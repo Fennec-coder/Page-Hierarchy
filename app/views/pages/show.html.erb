@@ -1,0 +1,10 @@
+<%= link_to 'create', "#{params[:name]}/add" %>
+
+<h1> SHOW: <%= @page.name %> </h1>
+<h2> <%= @page.title %> </h2>
+<div>
+  <%= format_page_text(@page.body) %>
+</div>
+
+<%= link_to 'Изменить', edit_page_path(params['name'])%>
+<%= link_to 'Удалить', page_path(params[:name], id: @page.id), data: { turbo_method: :delete, turbo_confirm: "Вы уверены?" } %>

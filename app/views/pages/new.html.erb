@@ -1,0 +1,9 @@
+<h1>NEW</h1>
+
+<%= simple_form_for @page, url: '' do |f| %>
+  <%= f.input :name %>
+  <%= f.input :title %>
+  <%= f.input :body, as: :text %>
+  <%= f.hidden_field :parent_id %>
+  <%= f.button :submit, 'Добавить страницу' %>
+<% end %>
