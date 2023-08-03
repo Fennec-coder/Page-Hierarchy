@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Помошник для представлений Page, отображает сложные конструкции
+#
 module PagesHelper
   # Рекурсивно отображает иерархическую структуру страниц на основе предоставленных данных.
   #
@@ -22,7 +24,7 @@ module PagesHelper
     content_tag(:ul) do
       pages_data.select { |page| page['parent_id'] == parent_id }.each do |page|
         current_url = "#{url}#{page['name']}"
-        concat(content_tag(:li, link_to(page['name'], page_path(current_url))))
+        concat(content_tag(:li, link_to(page['name'], URI.decode_www_form_component(page_path(current_url)))))
         concat(render_page_hierarchy(pages_data, page['id'], "#{current_url}/")) if children?(pages_data, page['id'])
       end
     end

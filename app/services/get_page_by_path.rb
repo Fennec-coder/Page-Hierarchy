@@ -18,9 +18,9 @@ class GetPageByPath
     # результатом которого будет являтся nil.
     return Success(nil) if @path.blank?
 
-    possible_pages = Page.where(name: @path).order(:parent_id)
+    possible_pages = Page.where(name: @path)
 
-    return Failure('Ни одной из страниц не обнаружено') if possible_pages.blank?
+    return Failure('Ни одной из страниц не обнаружено') if possible_pages.empty?
 
     page = nil
 

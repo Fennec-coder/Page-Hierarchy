@@ -43,11 +43,11 @@ class PagesController < ApplicationController
   def update
     @page = Page.find_by(id: page_params[:id])
 
-    if @page.update(page_params)
+    if @page&.update(page_params)
       pages = params[:name].split('/')
       path_to_page = (pages[0..-3] << (@page.name)).join('/')
 
-      redirect_to page_path(path_to_page), notice: 'Страница успешно изменина.'
+      redirect_to page_path(path_to_page), notice: 'Страница успешно изменена.'
     else
       render :edit, status: :unprocessable_entity
     end

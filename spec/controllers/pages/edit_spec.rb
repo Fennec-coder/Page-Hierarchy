@@ -8,14 +8,9 @@ RSpec.describe PagesController, type: :controller do
 
     before { get :edit, params: { name: page.name } }
 
-    it 'returns http success' do
-      get :edit, params: { name: page.name }
-      expect(response).to have_http_status(:success)
-    end
-
-    it 'assigns the requested page to @page' do
-      get :edit, params: { name: page.name }
+    it 'returns http success and assigns the requested page to @page' do
       expect(assigns(:page)).to eq(page)
+      expect(response).to have_http_status(:success)
     end
   end
 end
