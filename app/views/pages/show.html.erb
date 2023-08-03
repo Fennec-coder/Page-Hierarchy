@@ -1,6 +1,6 @@
-<%= link_to 'create', page_path("#{params[:name]}/add") %>
+<%= link_to t('ui.add'), page_path("#{params[:name]}/add") %>
 
-<h1> SHOW: <%= @page.name %> </h1>
+<h1> <%= @page.name %> </h1>
 <h2> <%= @page.title %> </h2>
 <div>
   <%= format_page_text(@page.body) %>

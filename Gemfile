@@ -81,3 +81,4 @@ end
 
 gem "dry-monads"
 gem "simple_form"
+gem "i18n"
