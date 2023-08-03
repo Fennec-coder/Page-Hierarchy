@@ -69,4 +69,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "rspec-rails"
+  gem "shoulda-matchers"
 end
+
+gem "pry"
+gem "dry-monads"
+gem "simple_form"
+gem "factory_bot_rails"
