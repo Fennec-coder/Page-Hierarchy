@@ -1,0 +1,15 @@
+<h1> Edit: <%= @page.name %> </h1>
+<%= simple_form_for @page, url: '' do |f| %>
+  <%= f.hidden_field :id %>
+
+  <%= f.input :name %>
+  <%= f.error :name %>
+
+  <%= f.input :title %>
+  <%= f.error :title %>
+
+  <%= f.input :body, as: :text %>
+  <%= f.error :body %>
+
+  <%= f.button :submit %>
+<% end %>

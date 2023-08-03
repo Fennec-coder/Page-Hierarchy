@@ -1,0 +1,14 @@
+ru:
+  ui:
+    home: "главная"
+    edit: "изменить"
+    add: "создать"
+    page_hierarchy: "Иерархия страниц"
+  activerecord:
+    models:
+      page: Page
+    attributes:
+      page:
+        name: "Имя"
+        title: "Заголовок"
+        body: "Текст"

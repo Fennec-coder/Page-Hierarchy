@@ -8,8 +8,10 @@ class Page < ApplicationRecord
   belongs_to :parent, class_name: 'Page', optional: true
   has_many :children, class_name: 'Page', foreign_key: 'parent_id', dependent: :destroy
 
-  validates :name, presence: true, format:
-    { with: /\A[\wа-яА-Я]+\z/, message: 'должно содержать только буквы, цифры или символ _' }
+  validates :name,
+            presence: true,
+            format: { with: /\A[\wа-яА-Я]+\z/, message: 'должно содержать только буквы, цифры или символ _' },
+            exclusion: { in: %w[add edit], message: 'не может быть "add" или "edit"' }
 
   validate :name_is_unique_among_children
 

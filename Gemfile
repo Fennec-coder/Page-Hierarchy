@@ -71,9 +71,14 @@ group :test do
   gem "webdrivers"
   gem "rspec-rails"
   gem "shoulda-matchers"
+  gem "factory_bot_rails"
+  gem "rails-controller-testing"
 end
 
-gem "pry"
+group :test, :development do
+  gem "pry"
+end
+
 gem "dry-monads"
 gem "simple_form"
-gem "factory_bot_rails"
+gem "i18n"
