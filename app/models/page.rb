@@ -19,6 +19,27 @@ class Page < ApplicationRecord
     name
   end
 
+  def self.find_pages_in_path(path)
+    sql = <<~SQL
+      WITH RECURSIVE PageHierarchy AS (
+        SELECT *, 1 AS level
+        FROM pages
+        WHERE name = ? AND parent_id IS NULL
+
+        UNION ALL
+
+        SELECT t.*, ph.level + 1
+        FROM pages t
+        INNER JOIN PageHierarchy ph ON t.parent_id = ph.id
+      )
+      SELECT *
+      FROM PageHierarchy
+      WHERE name IN (?);
+    SQL
+
+    find_by_sql([sql, path.first, path])
+  end
+
   private
 
   def name_is_unique_among_children
