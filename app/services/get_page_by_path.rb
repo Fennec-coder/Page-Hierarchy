@@ -11,29 +11,14 @@ class GetPageByPath
   end
 
   # @return [Dry::Monads::Result] Монада, представляющая результат операции.
-  #   Если страница найдена, возвращает монаду Success с экземпляром страницы.
-  #   Если страница не найдена, возвращает монаду Failure с сообщением об ошибке.
   def call
-    # Отсутствие пути, так же будет считаться успешным поиском,
-    # результатом которого будет являтся nil.
     return Success(nil) if @path.blank?
 
-    possible_pages = Page.where(name: @path)
+    page = Page.find_pages_in_path(@path)[@path.length - 1]
 
-    return Failure('Ни одной из страниц не обнаружено') if possible_pages.empty?
+    return Success(page) if page
 
-    page = nil
-
-    @path.each do |name|
-      page = possible_pages.find { _1.parent_id == page&.id && _1.name == name }
-      break if page.nil?
-    end
-
-    if page
-      Success(page)
-    else
-      Failure('Страница не найдена')
-    end
+    Failure('Страница не найдена')
   end
 end
 

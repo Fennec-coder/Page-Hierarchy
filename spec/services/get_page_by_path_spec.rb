@@ -14,16 +14,6 @@ RSpec.describe GetPageByPath do
       end
     end
 
-    context 'when no pages are found' do
-      let(:service) { described_class.new('nonexistent/page') }
-
-      it 'returns a Failure monad with an error message' do
-        result = service.call
-        expect(result).to be_a(Dry::Monads::Failure)
-        expect(result.failure).to eq('Ни одной из страниц не обнаружено')
-      end
-    end
-
     context 'when the page is found' do
       let!(:root_page) { create(:page, name: 'root', parent_id: nil) }
       let!(:child_page) { create(:page, name: 'child', parent_id: root_page.id) }
